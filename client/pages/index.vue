@@ -1,15 +1,15 @@
 <template>
   <main id="page-jobs">
     <section>
-      <dropdown :initialList="skillsList" />
+      <autocomplete :initialList="skillsList" />
     </section>
   </main>
 </template>
 
 <script>
-import dropdown from "../components/dropdown.vue";
+import autocomplete from "../components/autocomplete.vue";
 export default {
-  components: { dropdown },
+  components: { autocomplete },
 
   data() {
     return {

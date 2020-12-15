@@ -37,7 +37,7 @@ export default {
       const skillsArr = [];
       // flatten array of skills
       // ['a,b,c','x,y,z'] ---> ['a','b','c','x','y','z']
-      jobPosts.map((jobPost) => {
+      jobPosts.forEach((jobPost) => {
         skillsArr.push(...jobPost.skills.split(','))
       });
       // map skills, overwrite duplicates

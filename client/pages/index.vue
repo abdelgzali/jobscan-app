@@ -21,13 +21,12 @@ export default {
       skillsList: []
     };
   },
-  async fetch() {
+  async fetch() { // nuxt hook for fetching async data server-side
     try {
       const res = await fetch('https://jobscan-api.herokuapp.com/api/jobs'),
        fetchedJobs = await res.json();
       this.jobPosts = await fetchedJobs;
       this.getSkills(this.jobPosts);
-      //console.log(fetchedJobs);
     } catch(err) {
       console.log(err);
 
@@ -35,7 +34,19 @@ export default {
   },
   methods: {
     getSkills(jobPosts) {
-      this.skillsList = jobPosts.map((jobPost) => jobPost.skills);
+      const skillsArr = [];
+      // flatten array of skills
+      // ['a,b,c','x,y,z'] ---> ['a','b','c','x','y','z']
+      jobPosts.map((jobPost) => {
+        skillsArr.push(...jobPost.skills.split(','))
+      });
+      // map skills, overwrite duplicates
+      // takes an array pair of key/value,
+      // keys represent a unique set of skills (case insensitive); value maintains case integrity for each unique skill
+      // this ensures each string is unique, maintains case, while avoiding case sensitive duplicates
+      const skillsMap = new Map(skillsArr.map(skill => [skill.toLowerCase(), skill]));
+      this.skillsList = [...skillsMap.values()];
+      console.log(this.skillsList);
     }
   },
 };

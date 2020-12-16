@@ -5,10 +5,11 @@
         <template v-for="n in 5">
           <input
             type="radio"
-            :name="`rating-${skillName}-${6 - n}`"
-            :id="`rating-${skillName}-${6 - n}`"
+            :name="`rating-${Object.keys(skill)[0]}-${6 - n}`"
+            :id="`rating-${Object.keys(skill)[0]}-${6 - n}`"
+            @click="updateRating(skill, 6 - n)"
           />
-          <label :for="`rating-${skillName}-${6 - n}`"></label>
+          <label :for="`rating-${Object.keys(skill)[0]}-${6 - n}`"></label>
         </template>
       </div>
     </div>
@@ -16,8 +17,21 @@
 </template>
 
 <script>
+import store from "vuex";
+
 export default {
-  props: ["skillName", "skillIndex"],
+  props: ["skill", "skillIndex"],
+  data() {
+    return {
+      userSkill: this.skill,
+    };
+  },
+  methods: {
+    updateRating(skill, index) {},
+  },
+  mounted() {
+    console.log(Object.values(this.userSkill)[0]);
+  },
 };
 </script>
 

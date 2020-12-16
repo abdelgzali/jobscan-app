@@ -28,33 +28,28 @@
 
 <script>
 export default {
-  props: ["initialList"],
   data: function () {
     return {
-      listItems: this.initialList,
       userInput: "",
-      suggestions: this.initialList,
       showSuggestions: false,
       selectedItems: [],
     };
   },
+  computed: {
+    suggestions() {
+      return this.userInput
+        ? this.$store.state.skills.skills.filter((item) => {
+            if (item.toLowerCase().includes(this.userInput.toLowerCase()))
+              return item;
+          })
+        : this.$store.state.skills.skills;
+    },
+  },
   methods: {
     handleSearch() {
-      this.searchList();
       this.userInput.length > 0 && this.suggestions.length > 0
         ? (this.showSuggestions = true)
         : (this.showSuggestions = false);
-    },
-    // filters through listitems, returns items that include user input
-    searchList() {
-      if (this.userInput.length > 0) {
-        this.suggestions = this.listItems.filter((item) => {
-          if (item.toLowerCase().includes(this.userInput.toLowerCase()))
-            return item;
-        });
-      } else {
-        this.suggestions = this.listItems; // reset suggestions on empty input
-      }
     },
     toggleShowSuggestions() {
       this.showSuggestions = !this.showSuggestions;

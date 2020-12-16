@@ -25,10 +25,12 @@ export const mutations = {
   updateSkills(state, skills) {
     state.skills = skills;
   },
-  setSelectedSkill(state, skillName, rating) {
-    state.selectedSkills[skillName] = rating;
+  setSelectedSkill(state, { skill, rating }) {
+    state.selectedSkills = { ...state.selectedSkills, [skill]: rating };
+    console.log(`Updated ${skill} rating to ${rating}`);
   },
   unsetSelectedSkill(state, skillName) {
     delete state.selectedSkills[skillName];
+    state.selectedSkills = { ...state.selectedSkills };
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <main id="page-jobs">
     <section>
-      <autocomplete @selected="handleSelected" />
+      <autocomplete />
       <skills
         :selectedSkills="selectedSkills"
         @removeSkill="handleRemoveSkill"
@@ -39,11 +39,6 @@ export default {
     }
   },
   methods: {
-    handleSelected(skillsEmitted) {
-      // map skills as objects with user rating as value
-      this.selectedSkills = skillsEmitted.map((skill) => ({ [skill]: 0 }));
-      console.log(this.selectedSkills);
-    },
     handleRemoveSkill(skillIndex) {
       this.selectedSkills.splice(skillIndex, 1);
     },

@@ -1,11 +1,11 @@
 <template>
   <section id="skills">
     <ul>
-      <li v-for="(skill, index) in skills()" :key="index">
-        {{ Object.keys(skill)[0] }}
+      <li v-for="(skill, index) in Object.keys(skills)" :key="index">
+        {{ skill }}
 
         <rating :skill="skill" :skillIndex="index" />
-        <span class="material-icons" @click="() => handleRemove(index)">
+        <span class="material-icons" @click="() => handleRemove(skill)">
           close
         </span>
       </li>
@@ -17,14 +17,14 @@
 import rating from "../components/rating";
 export default {
   components: { rating },
-  props: ["selectedSkills"],
-  computed: {},
-  methods: {
-    handleRemove(index) {
-      this.$emit("removeSkill", index);
-    },
+  computed: {
     skills() {
-      return this.selectedSkills;
+      return this.$store.state.skills.selectedSkills;
+    },
+  },
+  methods: {
+    handleRemove(skill) {
+      this.$store.commit("skills/unsetSelectedSkill", skill);
     },
   },
 };

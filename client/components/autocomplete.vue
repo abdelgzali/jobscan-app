@@ -17,7 +17,7 @@
         <li
           v-for="(item, index) in suggestions"
           :key="index"
-          @click="handleClick(index)"
+          @click="handleClick(item)"
         >
           {{ item }}
         </li>
@@ -54,10 +54,9 @@ export default {
     toggleShowSuggestions() {
       this.showSuggestions = !this.showSuggestions;
     },
-    handleClick(index) {
+    handleClick(skill) {
       this.showSuggestions = !this.showSuggestions;
-      this.selectedItems.push(this.suggestions[index]);
-      this.$emit("selected", this.selectedItems);
+      this.$store.commit("skills/setSelectedSkill", { skill, rating: 0 });
     },
   },
 };

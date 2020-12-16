@@ -8,3 +8,12 @@ button {
   border-radius: 50px;
   cursor: pointer;
 }
+
+input {
+  border: 1px solid #ddd;
+  padding-left: 1rem;
+  
+  &:focus {
+    outline: none;
+  }
+}

@@ -1,6 +1,8 @@
 <template>
   <div class="autocomplete">
-    <div class="search-container">
+    <div
+      :class="showSuggestions ? 'search-container show' : 'search-container'"
+    >
       <input
         type="text"
         class="search-bar"
@@ -8,13 +10,15 @@
         v-model="userInput"
         @keyup="handleSearch"
       />
-      <button @click="toggleShowSuggestions">show</button>
+      <button @click="toggleShowSuggestions">
+        <span class="material-icons"> keyboard_arrow_down </span>
+      </button>
+      <ul v-if="showSuggestions" class="search-suggestions">
+        <li v-for="(item, index) in suggestions" :key="index">
+          {{ item }}
+        </li>
+      </ul>
     </div>
-    <ul v-if="showSuggestions">
-      <li v-for="(item, index) in suggestions" :key="index">
-        {{ item }}
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -59,10 +63,36 @@ div.autocomplete {
   div.search-container {
     display: flex;
     justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+
+    input.search-bar {
+      flex: 1 0 auto;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
 
     > button {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
+      transition: border-radius 250ms;
+    }
+
+    ul.search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      border: 1px solid #ddd;
+      width: 100%;
+    }
+
+    &.show {
+      > button {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 0;
+      }
     }
   }
 }

@@ -1,6 +1,8 @@
 <template>
   <div class="autocomplete">
-    <div :class="showSuggestions ? 'search-container show' : 'search-container'">
+    <div
+      :class="showSuggestions ? 'search-container show' : 'search-container'"
+    >
       <input
         type="text"
         class="search-bar"
@@ -12,7 +14,11 @@
         <span class="material-icons"> keyboard_arrow_down </span>
       </button>
       <ul v-if="showSuggestions" class="search-suggestions">
-        <li v-for="(item, index) in suggestions" :key="index" @click="handleClick(index)">
+        <li
+          v-for="(item, index) in suggestions"
+          :key="index"
+          @click="handleClick(index)"
+        >
           {{ item }}
         </li>
       </ul>
@@ -23,7 +29,7 @@
 <script>
 export default {
   props: ["initialList"],
-  data: function() {
+  data: function () {
     return {
       listItems: this.initialList,
       userInput: "",
@@ -43,7 +49,8 @@ export default {
     searchList() {
       if (this.userInput.length > 0) {
         this.suggestions = this.listItems.filter((item) => {
-          if (item.toLowerCase().includes(this.userInput.toLowerCase())) return item;
+          if (item.toLowerCase().includes(this.userInput.toLowerCase()))
+            return item;
         });
       } else {
         this.suggestions = this.listItems; // reset suggestions on empty input
@@ -70,6 +77,7 @@ div.autocomplete {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
+    z-index: 5;
 
     input.search-bar,
     > button {

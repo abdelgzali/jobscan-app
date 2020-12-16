@@ -2,7 +2,10 @@
   <main id="page-jobs">
     <section>
       <autocomplete :initialList="skillsList" @selected="handleSelected" />
-      <skills :selectedSkills="selectedSkills" @removeSkill="handleRemoveSkill" />
+      <skills
+        :selectedSkills="selectedSkills"
+        @removeSkill="handleRemoveSkill"
+      />
     </section>
   </main>
 </template>
@@ -15,7 +18,11 @@ export default {
 
   data() {
     return {
-      jobPosts: ["tech lead", "assistant to the regional tech lead", "receptionist"],
+      jobPosts: [
+        "tech lead",
+        "assistant to the regional tech lead",
+        "receptionist",
+      ],
       skillsList: [],
       selectedSkills: [],
     };
@@ -43,7 +50,9 @@ export default {
       // takes an array pair of key/value,
       // keys represent a unique set of skills (case insensitive); value maintains case integrity for each unique skill
       // this ensures each string is unique, maintains case, while avoiding case sensitive duplicates
-      const skillsMap = new Map(skillsArr.map((skill) => [skill.toLowerCase(), skill]));
+      const skillsMap = new Map(
+        skillsArr.map((skill) => [skill.toLowerCase(), skill])
+      );
       this.skillsList = [...skillsMap.values()];
       console.log(this.skillsList);
     },
@@ -52,8 +61,8 @@ export default {
       this.selectedSkills = skillsEmitted;
     },
     handleRemoveSkill(skillIndex) {
-      console.log(skillIndex);
       this.selectedSkills.splice(skillIndex, 1);
+      console.log(this.selectedSkills[skillIndex]);
     },
   },
 };

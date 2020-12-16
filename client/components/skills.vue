@@ -4,10 +4,8 @@
       <li v-for="(skill, index) in skills" :key="index">
         {{ skill }}
 
-        <rating :skillName="skill" />
-        <span class="material-icons" @click="handleRemove(index)">
-          close
-        </span>
+        <rating :skillName="skill" :skillIndex="index" />
+        <span class="material-icons" @click="handleRemove(index)"> close </span>
       </li>
     </ul>
   </section>
@@ -38,7 +36,9 @@ export default {
 
 <style lang="scss" scoped>
 section#skills {
-  margin: 1rem 0;
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem auto;
 
   ul {
     li {

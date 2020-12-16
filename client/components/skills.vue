@@ -3,6 +3,8 @@
     <ul>
       <li v-for="(skill, index) in skills" :key="index">
         {{ skill }}
+
+        <rating :skillName="skill" />
         <span class="material-icons" @click="handleRemove(index)">
           close
         </span>
@@ -12,7 +14,9 @@
 </template>
 
 <script>
+import rating from "../components/rating";
 export default {
+  components: { rating },
   props: ["selectedSkills"],
   // data() {
   //   return {
@@ -38,7 +42,7 @@ section#skills {
 
   ul {
     li {
-      background-color: $primary-yellow;
+      border: 2px solid $primary-yellow;
       padding: 0.675rem 1rem;
       margin-bottom: 0.375rem;
       border-radius: 5px;

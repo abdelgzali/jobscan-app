@@ -1,5 +1,9 @@
 <template>
-  <div class="autocomplete">
+  <div
+    :class="
+      selectedSkillsCount < 10 ? 'autocomplete' : 'autocomplete input-disabled'
+    "
+  >
     <div
       :class="showSuggestions ? 'search-container show' : 'search-container'"
     >
@@ -43,6 +47,9 @@ export default {
               return item;
           })
         : this.$store.state.skills.skills;
+    },
+    selectedSkillsCount() {
+      return Object.keys(this.$store.state.skills.selectedSkills).length;
     },
   },
   methods: {

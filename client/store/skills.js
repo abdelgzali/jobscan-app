@@ -1,4 +1,5 @@
 export const state = () => ({
+  jobPosts: [],
   skills: [],
   selectedSkills: {},
 });
@@ -22,12 +23,15 @@ export const mutations = {
       state.skills = [...skillsMap.values()];
     }
   },
+  updateJobs(state, jobPosts, callback) {
+    state.jobPosts = [...state.jobPosts, ...jobPosts];
+    if (callback) callback();
+  },
   updateSkills(state, skills) {
     state.skills = skills;
   },
   setSelectedSkill(state, { skill, rating }) {
     state.selectedSkills = { ...state.selectedSkills, [skill]: rating };
-    console.log(`Updated ${skill} rating to ${rating}`);
   },
   unsetSelectedSkill(state, skillName) {
     delete state.selectedSkills[skillName];

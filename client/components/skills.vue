@@ -1,11 +1,11 @@
 <template>
   <section id="skills">
     <ul>
-      <li v-for="(skill, index) in Object.keys(skills)" :key="index">
-        {{ skill }}
+      <li v-for="(skill, name) in skills" :key="name">
+        {{ skill.skill }}
 
-        <rating :skill="skill" :skillIndex="index" />
-        <span class="material-icons" @click="() => handleRemove(skill)">
+        <rating :skill="skill.skill" :skillName="name" />
+        <span class="material-icons" @click="() => handleRemove(name)">
           close
         </span>
       </li>
@@ -23,8 +23,9 @@ export default {
     },
   },
   methods: {
-    handleRemove(skill) {
-      this.$store.commit("skills/unsetSelectedSkill", skill);
+    handleRemove(name) {
+      console.log(name);
+      this.$store.commit("skills/unsetSelectedSkill", name);
     },
   },
 };
@@ -34,7 +35,7 @@ export default {
 section#skills {
   width: 100%;
   max-width: 500px;
-  margin: 1rem auto;
+  margin: 2rem auto;
 
   ul {
     li {
@@ -50,6 +51,12 @@ section#skills {
         cursor: pointer;
       }
     }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  section#skills {
+    margin: 1rem auto;
   }
 }
 </style>

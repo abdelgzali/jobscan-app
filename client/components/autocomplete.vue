@@ -62,6 +62,7 @@ export default {
       this.showSuggestions = !this.showSuggestions;
     },
     handleClick(skill) {
+      console.log(skill);
       this.showSuggestions = !this.showSuggestions;
       this.$store.commit("skills/setSelectedSkill", { skill, rating: 0 });
     },
@@ -106,6 +107,8 @@ div.autocomplete {
       left: 0;
       border: 1px solid #ddd;
       width: 100%;
+      max-height: 500px;
+      overflow: scroll;
       background-color: #fff;
 
       li {

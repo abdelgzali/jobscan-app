@@ -30,10 +30,17 @@ export const mutations = {
   updateSkills(state, skills) {
     state.skills = skills;
   },
+  // keys of object are skills toLowercase, values are objects with case sensitive skillname and user rating
+  // {php: {skill:'PHP', rating: '5'}}
   setSelectedSkill(state, { skill, rating }) {
-    state.selectedSkills = { ...state.selectedSkills, [skill]: rating };
+    const skillLowercase = skill.toLowerCase();
+    state.selectedSkills = {
+      ...state.selectedSkills,
+      [skillLowercase]: { skill, rating },
+    };
   },
   unsetSelectedSkill(state, skillName) {
+    console.log(skillName);
     delete state.selectedSkills[skillName];
     state.selectedSkills = { ...state.selectedSkills };
   },

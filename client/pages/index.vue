@@ -65,7 +65,6 @@ export default {
         });
         jobScores.push({ score: jobScore, job });
       });
-      console.log(jobScores);
       return jobScores; // array of {score,job} objects
     },
     // sorts jobs by relevance scores

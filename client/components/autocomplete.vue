@@ -62,9 +62,9 @@ export default {
       this.showSuggestions = !this.showSuggestions;
     },
     handleClick(skill) {
-      console.log(skill);
       this.showSuggestions = !this.showSuggestions;
       this.$store.commit("skills/setSelectedSkill", { skill, rating: 0 });
+      this.userInput = "";
     },
   },
 };

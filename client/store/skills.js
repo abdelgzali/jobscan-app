@@ -40,7 +40,6 @@ export const mutations = {
     };
   },
   unsetSelectedSkill(state, skillName) {
-    console.log(skillName);
     delete state.selectedSkills[skillName];
     state.selectedSkills = { ...state.selectedSkills };
   },

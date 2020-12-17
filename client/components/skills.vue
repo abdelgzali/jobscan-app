@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     handleRemove(name) {
-      console.log(name);
       this.$store.commit("skills/unsetSelectedSkill", name);
     },
   },
@@ -40,7 +39,7 @@ section#skills {
     li {
       border: 2px solid $primary-yellow;
       padding: 0.675rem 1rem;
-      margin-bottom: 0.375rem;
+      margin-bottom: 1rem;
       border-radius: 5px;
       display: flex;
       justify-content: space-between;

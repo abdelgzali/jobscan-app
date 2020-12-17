@@ -1,7 +1,7 @@
 <template>
   <div class="rating-container">
     <div class="feedback">
-      <div :class="skillRating > 0 ? 'rating input-disabled' : 'rating'">
+      <div :class="disableRating ? 'rating input-disabled' : 'rating'">
         <template v-for="n in 5">
           <input
             type="radio"
@@ -21,7 +21,9 @@
 export default {
   props: ["skill"],
   data() {
-    return {};
+    return {
+      disableRating: false,
+    };
   },
   computed: {
     skillRating() {
@@ -33,6 +35,7 @@ export default {
   methods: {
     updateRating(skill, rating) {
       this.$store.commit("skills/setSelectedSkill", { skill, rating });
+      this.disableRating = !this.disableRating;
     },
     isChecked(starIndex) {
       return this.skillRating >= starIndex ? true : false;

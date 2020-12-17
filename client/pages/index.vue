@@ -84,10 +84,12 @@ export default {
 
 <style lang="scss">
 main#page-jobs {
+  max-width: 600px;
+  margin: 0 auto;
+
   section#jobs-skills {
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+
     > p {
       margin-top: 0.375rem;
       font-size: 12px;
@@ -95,8 +97,7 @@ main#page-jobs {
   }
   section#jobs-content {
     width: 100%;
-    max-width: 600px;
-    margin: 1rem auto;
+    margin: 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
